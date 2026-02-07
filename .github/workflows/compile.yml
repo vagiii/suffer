@@ -1,0 +1,40 @@
+name: Compile Ink Story
+
+on:
+  push:
+    paths:
+      - '**.ink'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Inklecate
+        run: |
+          wget https://github.com/inkle/inklecate/releases/download/v1.1.1/inklecate_linux.zip
+          unzip inklecate_linux.zip
+          chmod +x inklecate
+          
+      - name: Compile Ink to JSON
+        run: |
+          ./inklecate -o story.json main.ink
+          
+      - name: Wrap JSON for JS
+        run: |
+          echo "var storyContent = " > discoelysiumgame.js
+          cat story.json >> discoelysiumgame.js
+          echo ";" >> discoelysiumgame.js
+          
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add discoelysiumgame.js
+          # Only commit if there are changes
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-compile Ink story" && git push)
