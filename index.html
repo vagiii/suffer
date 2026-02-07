@@ -1,1 +1,48 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>asd</title><meta name="description" content="asd"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="msapplication-TileColor" content="#da532c"><script>window.$atramentConfig={"name":"asd","short_name":"asd","description":"asd","theme":"dark","font":"System","language":"en","locale":"en-US","game":{"path":"game","script":"main.ink.json"}};</script><script type="module" crossorigin src="./assets/index-CfMw6RP-.js"></script><link rel="modulepreload" crossorigin href="./assets/atrament-xkDB97FC.js"><link rel="stylesheet" crossorigin href="./assets/index-BV8US55b.css"><link rel="manifest" href="./manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script><meta name="theme-color" content="#673ab8"><link rel="icon" href="./favicon.ico" sizes="48x48"><link rel="apple-touch-icon" href="./apple-touch-icon-180x180.png"></head><body><div id="app"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suffering</title>
+    <meta name="description" content="An interactive narrative experience">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="./apple-touch-icon-180x180.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.webmanifest">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="dark">
+    <div class="outerContainer">
+        <div class="photoContainer">
+            <div class="charphoto"></div>
+        </div>
+        
+        <div id="story">
+            <div class="header">
+                <h1>Suffering</h1>
+                <h2 class="byline">ASDF</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ink.js engine -->
+    <script src="./ink.js"></script>
+    
+    <!-- Story content -->
+    <script src="./discoelysiumgame.js"></script>
+    
+    <!-- Game logic -->
+    <script src="./main.js"></script>
+    
+    <!-- PWA Service Worker registration -->
+    <script src="./registerSW.js"></script>
+</body>
+</html>
