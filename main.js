@@ -164,9 +164,9 @@
                     var speaker = '<span class="name">'+splitTag.val+"</span> "
                     
                     // If it's a skill:
-                    for(i in skills) {
-                        if(skills[i][splitTag.val]) {
-                            speaker = '<span class="'+i+'">'+skills[i][splitTag.val]+"</span> "
+                    for(var skillGroup in skills) {
+                        if(skills[skillGroup][splitTag.val]) {
+                            speaker = '<span class="'+skillGroup+'">'+skills[skillGroup][splitTag.val]+"</span> "
                         }
                     }
                     if(newInnerText) {
@@ -234,19 +234,6 @@
             paragraphElement.innerHTML = paragraphText;
             storyContainer.appendChild(paragraphElement);
             
-            // Logic specific to YOU choices
-            var first_paragraph = document.querySelector("p:not(.greyed)");
-            if (first_paragraph.innerHTML.includes('<you>')) {
-                paragraphElement.classList.add("you");
-                paragraphElement.classList.add("greyed");
-                
-                // This automatically removes [] from choices; comment out if not desired.
-                var newtext = first_paragraph.innerHTML.replace(/\[/g, '');
-                newtext = newtext.replace(/\]/g, '');
-                first_paragraph.innerHTML = newtext;
-                
-            }
-
             // Add any custom classes derived from ink tags
             for(var i=0; i<customClasses.length; i++)
                 paragraphElement.classList.add(customClasses[i]);

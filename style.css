@@ -54,7 +54,9 @@ h3.written-in-ink {
 /* Seems necessary to make iframes work on itch.io on mobile iOS :-( */
 .outerContainer {
     position: absolute;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     margin: 0;
     padding: 0;
     -webkit-overflow-scrolling: touch;
@@ -70,8 +72,7 @@ h3.written-in-ink {
     display: block;
     max-width: 350px;
     min-height: 100vh;
-    height: 100%;
-    margin: 0 auto;
+    margin: 0;
     padding: 70px;
     padding-top: 4em;
     background-image: url("images/backgroundtrans.png");
@@ -312,21 +313,39 @@ body .read a {
 /* Photos */
 .photoContainer {
     display: none;
-    justify-content:center;
-}
-
-.charframe {
+    position: sticky;
+    top: 140px;
     width: 150px;
-    position: absolute;
-    margin-left: -575px;
-    margin-top: 124px;
+    margin-top: 140px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    justify-content: center;
 }
 
 .charphoto {
     width: 125px;
-    position: absolute;
-    margin-left: -573px;
-    margin-top: 140px;
+}
+
+.charphoto img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 800px) {
+    .outerContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .photoContainer {
+        /* When display: none is set by JS, it stays hidden.
+           When it's visible, it uses these styles. */
+        position: relative;
+        top: 0;
+        margin-top: 20px;
+        margin-right: 0;
+        margin-bottom: -100px;
+        z-index: 10;
+    }
 }
 
 
