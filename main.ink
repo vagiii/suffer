@@ -1,4 +1,4 @@
-# title: SUFFERING
+# title: UTRPENÍ
 # author: ASDF
 # theme: dark
 
@@ -8,101 +8,101 @@
 
 # PORTRAIT: harry
 # SPEAKER: ANCIENT REPTILIAN BRAIN
-Reality demands attention, a place on the stage. Cognitive awareness protests against the sudden flood of activity, and motor functions seem to be out of order.
+Realita vyžaduje pozornost, místo na jevišti. Kognitivní vědomí protestuje proti náhlému přívalu aktivity a motorické funkce vypadají, že jsou v nepořádku.
 # SPEAKER: LIMBIC SYSTEM
-Anxiety and irrational fear are the only remnants of dreams you cannot, or perhaps do not want to, recall.
+Úzkost a iracionální strach jsou jediné pozůstatky snů, které si nemůžeš – nebo snad ani nechceš – vybavit.
 + [▸]
     -> Birth
 
 === Birth ===
 # SPEAKER: vol
 # PORTRAIT: vol
-From nothing, your consciousness was born, for the fragments it possesses are merely confusing nonsense, devoid of context. It immediately summons all available resources, and some functions begin to slowly return.
+Z ničeho se zrodilo tvé vědomí, neboť fragmenty, které vlastní, jsou jen matoucí nesmysly, zbavené kontextu. Okamžitě svolává všechny dostupné zdroje a některé funkce se pomalu vrací.
 # SPEAKER: YOU
 # PORTRAIT: harry
-A few cognitive and perceptive abilities are at your disposal, but motor control remains beyond your reach.
+K dispozici máš několik kognitivních a percepčních schopností, ale motorické ovládání zůstává mimo tvůj dosah.
 + [▸]
     -> SensoryOverload
 
 === SensoryOverload ===
 # SPEAKER: per
 # PORTRAIT: per
-As certain synaptic pathways reconnect, sensory data flood your mind. You are lying on something soft, and it is warm. Next to you, someone is breathing deeply and steadily. A foul, sour stench invades your nostrils.
+Jakmile se znovu propojují určité synaptické dráhy, tvoji mysl zaplavují senzorická data. Ležíš na něčem měkkém a je tu teplo. Vedle tebe někdo zhluboka a pravidelně dýchá. Do nosu se ti vkrádá odporný, kyselý zápach.
 + [▸]
     -> Nausea
 
 === Nausea ===
 # SPEAKER: YOU
 # PORTRAIT: harry
-Realizing that its source is you sends a wave of nausea through your body, and you taste bitterness and acid in your mouth. Any attempt to swallow fails, for your mouth is as dry as Death Valley.
-* [Let the darkness take over again]
+Uvědomění si, že jeho zdrojem jsi ty, vyšle tvým tělem vlnu nevolnosti a v ústech cítíš hořkost a kyselost. Jakýkoli pokus polknout selhává, protože máš v ústech sucho jako na poušti.
+* [Nechat se znovu pohltit temnotou]
     # SPEAKER: vol
     # PORTRAIT: vol
-    Despite your best efforts to forfeit every bit of will to live there is, your body is slowly gaining its former capabilities. Some less desirable than others.
+    Navzdory tvé maximální snaze vzdát se veškeré vůle k životu, tvé tělo pomalu nabývá své dřívější schopnosti. Některé méně žádoucí než jiné.
     -> Start
-* [Try to move] -> Boot
+* [Pokusit se pohnout] -> Boot
 
 === Boot ===
 # CLEAR
 # SPEAKER: log
 # PORTRAIT: log
-You feel like it should be possible, but you're going to be smart about this. In order to restore your vision You're going to have to clear what's preventing your eyes from opening and that's just first of great things about to be accomplished with your newly obtained consciousness.
+Cítíš, že by to mělo být možné, ale tentokrát na to půjdeš chytře. Aby ses vrátil ke zraku, musíš odstranit to, co ti brání otevřít oči, a to je jen první z velkých věcí, kterých s nově nabytým vědomím dosáhneš.
 + [▸]
     -> EyesOpen
 
 === EyesOpen ===
 # SPEAKER: YOU
 # PORTRAIT: harry
-Yet, the expected information that usually accompany such endeavor still hasn't made appearance. Or at least not in some comprehensive form. Bits of information from your adult life are lacking context rendering them confusing.
-* [Try to remember]
+Přesto se očekávané informace, které obvykle takové úsilí provázejí, stále neobjevily. Nebo přinejmenším ne v nějaké ucelené formě. Kouskům informací z tvého dospělého života chybí kontext, což je činí matoucími.
+* [Zkusit si vzpomenout]
     # SPEAKER: pai
     # PORTRAIT: pai
-    You summon all available concentration and point it at the blurry spot in your memory. Despite your best intentions, it just caused you enormous vertigo with nausea closely following its steps. It lingers there as a punishment for doing the forbidden. Like looking to a sun.
-    + [Put your motor functions to use instead]
+    Svoláš veškerou dostupnou koncentraci a zaměříš ji na rozmazané místo ve své paměti. Navzdory tvým nejlepším úmyslům to způsobilo jen obrovské závratě a následnou nevolnost. Zůstává to tam jako trest za to, že děláš zakázané věci. Jako dívat se přímo do slunce.
+    + [Místo toho použít motorické funkce]
         -> RollOver
 
 === RollOver ===
 # CLEAR
 # SPEAKER: phy
 # PORTRAIT: phy
-Since you had such success last time and made it possible for your eyes to eventually open, you could try something more this time. Like rolling on your back, giving your eyes opportunity to survey the area, hopefully bringing more information or recollections into the mess that you call memory.
+Protože jsi byl minule tak úspěšný a podařilo se ti nakonec otevřít oči, mohl bys tentokrát zkusit něco víc. Třeba se přetočit na záda, čímž dáš očím příležitost prozkoumat okolí, což snad vnese více informací nebo vzpomínek do té spouště, které říkáš paměť.
 # SPEAKER: YOU
 # PORTRAIT: harry
-However the complex movement stirs something up inside you and suddenly you don't feel very well. Probably, it's the hunger.
+Složitý pohyb však v tobě něco rozvíří a náhle ti není vůbec dobře. Pravděpodobně je to hlad.
 + [▸]
     -> Kitchen
 
 === Kitchen ===
 # SPEAKER: per
 # PORTRAIT: per
-The light in here is clinical. A flat, judgmental white that comes from a panel in the ceiling, making the white linoleum floor whiter, the stainless-steel sink shinier, the whole room feel like a morgue for breakfast foods.
+Světlo je tu klinické. Ploché, odsuzující bílé světlo, které vychází z panelu ve stropě. Dělá bílé linoleum ještě bělejším, dřez z nerezové oceli zářivějším; celá místnost působí jako márnice pro snídaňové potraviny.
 + [▸]
     # SPEAKER: YOU
     # PORTRAIT: harry
-    Your head is a leaden weight, a stone tied to your spine. A low, persistent thrumming beats behind your eyes, the rhythm of a forgotten, awful song. You’re gripping the edge of the counter with white knuckles, the cold metal a thin anchor against another tide of whatever this is. Nausea. Vertigo. A profound and total emptiness.
+    Tvoje hlava je olověné závaží, kámen přivázaný k páteři. Za očima ti tepe nízký, vytrvalý rytmus zapomenuté, hrozné písně. Bílými klouby svíráš hranu pracovní desky, studený kov je tenkou kotvou proti další vlně čehokoli, co to je. Nevolnost. Závrať. Hluboká a totální prázdnota.
     + [▸]
         # SPEAKER: vis
         # PORTRAIT: vis
-        The kitchen is clean. Unnaturally so. There’s a half-eaten kebab in its wrapper on the counter, but other than that, nothing.
-        * [Eat the kebab]
+        Kuchyně je čistá. Nepřirozeně čistá. Na lince leží jen nedojedený kebab v obalu, jinak nic.
+        * [Sníst kebab]
             # SPEAKER: ele
             # PORTRAIT: ele
-            You pick up the kebab. The meat is cold and greasy, the paper limp with congealed fat. The smell is both familiar and deeply alien. A part of you, some vestigial animal hindbrain, urges you to consume it. To refuel.
+            Vezmeš kebab do ruky. Maso je studené a mastné, papír poddajný od sraženého tuku. Vůně je povědomá a zároveň hluboce cizí. Část tebe, nějaký zakrnělý zvířecí zadní mozek, tě nutí ho zkonzumovat. Doplnit palivo.
             # SPEAKER: YOU
             # PORTRAIT: harry
-            You take a bite. It tastes like regret. The meat is tough, gristly. The sauce is cloyingly sweet, the onions sharp and acrid. You chew mechanically, swallow, and immediately regret it. Your stomach lurches in protest.
+            Kousneš si. Chutná to jako výčitky. Maso je tuhé, šlachovité. Omáčka je přeslazená, cibule ostrá a štiplavá. Mechanicky žvýkáš, polykáš a okamžitě toho lituješ. Žaludek se ti na protest zvedá.
             -> KebabEaten
-        * [Look in the fridge]
+        * [Podívat se do lednice]
             -> Fridge
 
 === Fridge ===
 # SPEAKER: YOU
 # PORTRAIT: harry
-You pull the chrome handle. It gives a satisfying *thunk* as the seal breaks. Cold, dead air billows out, revealing contents of a fridge stocked for a family. Yogurts, fruit, a carton of milk. Tupperware containers filled with things you can't identify. A six-pack of cheap domestic beer.
+Zataháš za chromované madlo. Ozve se uspokojivé *lupnutí*, jak povolí těsnění. Vyvalí se z ní studený, mrtvý vzduch a odhalí obsah lednice zásobované jako pro celou rodinu. Jogurty, ovoce, karton mléka. Plastové krabičky s věcmi, které nedokážeš identifikovat. Šestibalení levného domácího piva.
 # SPEAKER: inl
 # PORTRAIT: inl
-Nothing is yours. None of this is for you. You feel like a burglar in your own home, casing the joint for loot.
-The light inside the fridge flickers, buzzing like a trapped insect. Or a memory trying to surface. You slam it shut. The kitchen returns to its clinical silence.
+Nic z toho není tvoje. Nic z toho není pro tebe. Připadáš si jako lupič ve vlastním domě, který si obhlíží terén kvůli kořisti.
+Světlo uvnitř lednice bliká a bzučí jako uvězněný hmyz. Nebo vzpomínka, která se snaží vyplavat na povrch. Zabouchneš ji. Kuchyně se vrací do své klinické tichosti.
 + [▸]
     -> Reflection
 
@@ -110,62 +110,62 @@ The light inside the fridge flickers, buzzing like a trapped insect. Or a memory
 # CLEAR
 # PORTRAIT: harry
 # SPEAKER: YOU
-You’re staring at the kebab, half-eaten in your fist. The grease soaks into the wrapper, leaving dark, ugly blotches. It’s a monument to poor decisions, past and present.
-* [Look in the fridge]
+Zíráš na kebab, napůl snědený ve své pěsti. Mastnota se vpíjí do obalu a zanechává tmavé, ošklivé skvrny. Je to pomník špatných rozhodnutí, minulých i přítomných.
+* [Podívat se do lednice]
     -> Fridge
 
 === Reflection ===
 # PORTRAIT: harry
 # SPEAKER: YOU
-Your reflection is a smudge in the chrome of the toaster. A ghost. A stranger with your face. A stranger who, apparently, eats cold kebabs for breakfast.
+Tvůj odraz je šmouha v chromu topinkovače. Přízrak. Cizinec s tvou tváří. Cizinec, který zřejmě snídá studené kebaby.
 + [▸]
     # SPEAKER: YOU
-    Your stomach is churning, a violent protest against the meal. Your head is a blacksmith’s anvil, and someone is using your thoughts as a hammer.
+    Tvůj žaludek se bouří, násilný protest proti tomu jídlu. Hlava je kovadlina a někdo používá tvé myšlenky jako kladivo.
     # SPEAKER: per
     # PORTRAIT: per
-    Then, a sound.
+    Pak zvuk.
     + [▸]
         # SPEAKER: YOU
         # PORTRAIT: harry
-        A footstep. In the other room.
-        It’s heavy, deliberate. The floorboards groan under a weight you don't recognize. Your breath catches in your throat. The cold metal of the counter is no longer an anchor, but a cage.
+        Krok. Ve vedlejší místnosti.
+        Je těžký, záměrný. Podlahová prkna sténají pod vahou, kterou nepoznáváš. Dech se ti zadrhne v krku. Studený kov desky už není kotvou, ale klecí.
         -> WomanAppears
 
 === WomanAppears ===
 # PORTRAIT: harry
 # SPEAKER: YOU
-A face appears in the doorway. It’s a woman’s face, framed by tangled dark hair. She’s wearing a grey bathrobe that’s seen better decades. Her blouse, a vibrant blue, peaks out from underneath.
+Ve dveřích se objeví tvář. Je to ženská tvář, lemovaná zacuchanými tmavými vlasy. Má na sobě šedý župan, který už zažil lepší desetiletí. Pod ním vykukuje modrá halenka.
 # SPEAKER: emp
 # PORTRAIT: emp
-Her eyes are narrowed, a mixture of suspicion and something else… She look as if she's afraid to walk past you, to cross this kitchen, but also as if she's done it a thousand times. Probably. But you cannot remember a single instance.
+Oči má přimhouřené, směs podezření a něčeho dalšího… Vypadá, jako by se bála projít kolem tebe, překročit tuto kuchyni, ale také jako by to udělala už tisíckrát. Pravděpodobně. Ale ty si nevzpomínáš na jediný okamžik.
 # SPEAKER: YOU
 # PORTRAIT: harry
-She watches you like a prey might watch a predator, as if it's you who's the danger here.
+Pozoruje tě, jako by kořist mohla pozorovat predátora, jako bys ty byl tím nebezpečím.
 + [▸]
     # SPEAKER: YOU
-    Hello. The word echoes in the empty cavern of your mind, a ghost of a sound. You try to form it with your lips, but your vocal cords are a tangled mess of wire.
-    She takes a tentative step inside, her bare feet silent on the linoleum. Her gaze flickers from your face to the kebab in your hand, then back again.
+    Ahoj. To slovo se ozývá prázdnou jeskyní tvé mysli, duch zvuku. Snažíš se ho vytvarovat rty, ale hlasivky máš jako zamotaný drát.
+    Ona udělá váhavý krok dovnitř, její bosé nohy jsou na linoleu neslyšné. Její pohled těká z tvé tváře na kebab v tvé ruce a zase zpět.
     + [▸]
         # SPEAKER: WOMAN
-        “Are you.... okay?” she asks. Her voice is low, raspy. A tired voice. A familiar voice?
+        „Jsi… v pořádku?“ ptá se. Její hlas je hluboký, chraplavý. Unavený hlas. Povědomý hlas?
         # SPEAKER: YOU
-        You can only stare back, your mind a raging sea of nothing. The kebab feels heavier now, a disgusting, greasy burden.
+        Můžeš jen zírat zpět, tvá mysl je rozbouřené moře ničeho. Kebab je teď těžší, odporné, mastné břemeno.
         + [▸]
             # SPEAKER: YOU
-            “I… I’m fine?” It's not a question, it's a plea. A desperate, pathetic attempt to fill the silence with something, anything that sounds human. The words are foreign in your mouth, a language you don't understand.
+            „Já… jsem v pohodě?“ Není to otázka, je to prosba. Zoufalý, ubohý pokus zaplnit ticho něčím, čímkoli, co zní lidsky. Ta slova jsou v tvých ústech cizí, jazyk, kterému nerozumíš.
             # SPEAKER: per
             # PORTRAIT: per
-            She doesn't look convinced. She takes another step, and you can see the fine lines around her eyes, the faint scar on her chin. Details. Things that should mean something, but are just… shapes. Colors.
+            Nevypadá přesvědčeně. Udělá další krok a ty vidíš jemné vrásky kolem jejích očí, slabou jizvu na bradě. Detaily. Věci, které by měly něco znamenat, ale jsou to jen… tvary. Barvy.
             + [▸]
                 # SPEAKER: WOMAN
-                "You are?" she asks, her eyes narrowing, "are you sure? Because..." She pauses, clearly not believing you.
+                „Jsi?“ ptá se a oči se jí zúží, „jsi si jistý? Protože…“ Odmlčí se, zjevně ti nevěří.
                 # SPEAKER: dra
                 # PORTRAIT: dra
-                She has that look of a zebra that's been told by an incredibly friendly tiger to come closer. She does not buy it, sire.
+                Dívá se na tebe jako zebra, které právě nesmírně přátelský tygr řekl, ať přijde blíž. Nežere ti to, sire.
                 # SPEAKER: YOU
                 # PORTRAIT: harry
-                Her fear is a palpable thing, a low thrum in the air that matches the one in your skull. She's afraid of *you*.
-                * [<red>Try to smile]
+                Její strach je hmatatelný, nízké brnění ve vzduchu, které ladí s tím v tvé lebce. Bojí se *tebe*.
+                * [<red>Zkusit se usmát]
                     -> SmileCheck
 
 === SmileCheck ===
@@ -173,25 +173,25 @@ She watches you like a prey might watch a predator, as if it's you who's the dan
 # CHECK: med-suc
 # PORTRAIT: harry
 # SPEAKER: YOU
-You pull the corners of your mouth upward. It feels like cracking a plaster mask. The effort sends a fresh wave of nausea through you. Your reflection in the toaster, that smudged, pale ghost, grins a rictus grin.
+Vytáhneš koutky úst nahoru. Je to jako praskání sádrové masky. Ta námaha pošle tvým tělem novou vlnu nevolnosti. Tvůj odraz v topinkovači, ten rozmazaný, bledý přízrak, se šklebí křečovitým úsměvem.
 # SPEAKER: YOU
-Her eyes grow wide and she slowly start to walk towards the front door, her back always facing away from you. Without ever looking anywhere else but you, she grabs her shoes, opens the front door and with a slam, she disappears.
+Její oči se rozšíří a ona pomalu začne couvat ke vchodovým dveřím, zády stále k tobě. Aniž by se podívala kamkoli jinam než na tebe, popadne boty, otevře dveře a s prásknutím zmizí.
 + [▸]
     -> Monster
 
 === Monster ===
 # PORTRAIT: harry
 # SPEAKER: YOU
-* [Am I some kind of monster?]
+* [Jsem nějaké monstrum?]
     # SPEAKER: inl
     # PORTRAIT: inl
-    The question hangs in the silent kitchen, unasked, unanswered. You look down at your hands. They are your hands, aren't they? The same number of fingers, the same little scars, the same bitten nails. They look… normal.
+    Otázka visí v tiché kuchyni, nevyřčená, nezodpovězená. Podíváš se na své ruce. Jsou to tvoje ruce, že? Stejný počet prstů, stejné malé jizvy, stejné okousané nehty. Vypadají… normálně.
     # SPEAKER: YOU
-    But they’re holding a cold kebab, and they just terrified a woman who may or may not be your wife. Or your sister. Or your hostage. The possibilities are a carousel of horrors, spinning too fast to grab onto.
+    Ale drží studený kebab a právě vyděsily ženu, která možná je, nebo možná není tvou ženou. Nebo sestrou. Nebo rukojmím. Ty možnosti jsou kolotoč hrůz, který se točí příliš rychle, než aby ses ho mohl chytit.
     + [▸]
         # SPEAKER: YOU
-        You drop the kebab. It lands on the floor with a wet, pathetic slap. Grease and onion and shame, splattered across the pristine linoleum.
-        The silence is deafening. It’s the silence of a tomb. Your tomb. You need to know. You need to find something, anything, that will tell you who you are.
+        Upustíš kebab. Dopadne na podlahu s mokrým, ubohým plácnutím. Mastnota, cibule a ostuda, rozstříknuté po bezchybném linoleu.
+        Ticho je ohlušující. Je to ticho hrobky. Tvé hrobky. Musíš vědět. Musíš najít něco, cokoli, co ti řekne, kdo jsi.
         + [▸]
             -> Search
 
@@ -199,18 +199,18 @@ Her eyes grow wide and she slowly start to walk towards the front door, her back
 # CLEAR
 # PORTRAIT: harry
 # SPEAKER: YOU
-You frantically start to look around for a mirror, a reflection, anything that can tell you who you are. Clichés are all you have. They are guideposts in an endless, featureless wasteland.
+Horečně začneš hledat zrcadlo, odraz, cokoli, co by ti řeklo, kým jsi. Klišé jsou vše, co máš. Jsou to ukazatele v nekonečné, prázdné pustině.
 + [▸]
     # SPEAKER: YOU
-    Your search takes you out of the kitchen, your bare feet slapping against the hardwood floor of the hallway. The living room is to your left. It’s a mess of blankets and pillows, a nest where someone has been sleeping. The bathroom is straight ahead. The door is slightly ajar. A sliver of light cuts through the darkness.
-    * [Go into the living room]
+    Tvé hledání tě zavede z kuchyně, bosé nohy plácají o dřevěnou podlahu chodby. Obývací pokoj je nalevo. Je to spoušť dek a polštářů, hnízdo, kde někdo spal. Koupelna je přímo naproti. Dveře jsou pootevřené. Pruh světla řeže temnotu.
+    * [Jít do obývacího pokoje]
         -> LivingRoom
 
 === LivingRoom ===
 # PORTRAIT: harry
 # SPEAKER: YOU
-You step into the living room. The air is thick with the stale smell of sleep. There's a blanket tossed over the back of the couch, a book face down on the coffee table.
+Vstoupíš do obývacího pokoje. Vzduch je hustý zatuchlým pachem spánku. Na opěradle pohovky leží přehozená deka, na konferenčním stolku kniha položená stránkami dolů.
 # SPEAKER: per
 # PORTRAIT: per
-You pick it up. The cover is a picture of a spaceship crashing into a planet. The title is in a language you can't read. You open it. The words inside are just as alien.
+Vezmeš ji. Na obálce je obrázek vesmírné lodi narážející do planety. Název je v jazyce, který neumíš přečíst. Otevřeš ji. Slova uvnitř jsou stejně cizí.
 -> END
