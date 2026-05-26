@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Editor - Suffering</title>
+    <style>
+        body { margin:0; padding:0; background:#111; color:#eee; font-family:monospace; height:100vh; display:flex; }
+        .editor-container { display:flex; width:100vw; height:100vh; }
+        .panel { flex:1; display:flex; flex-direction:column; }
+        .toolbar { padding:10px; background:#1a1a1a; border-bottom:1px solid #333; }
+        .toolbar button { margin-right:10px; padding:6px 20px; font-family:inherit; background:#222; color:#eee; border:1px solid #444; border-radius:4px; cursor:pointer; }
+        .toolbar button:hover { background:#333; }
+        textarea { flex:1; resize:none; border:none; outline:none; background:#181818; color:#eee; font-size:14px; padding:16px; }
+        .preview { flex:1; overflow-y:auto; background:#161616; padding:16px; }
+        .story-title { font-size:1.2em; color:#4CAF50; margin:8px 0; }
+        .story-speaker { color:#ffb74d; font-weight:bold;margin-top:10px; }
+        .story-choice { color:#82b1ff; margin-left:14px;margin-bottom:4px;font-size:0.96em; }
+        .story-text { margin:2px 0 12px 0; color:#fafafa; }
+    </style>
+</head>
+<body>
+<div class="editor-container">
+    <div class="panel">
+        <div class="toolbar">
+            <button onclick="fileInput.click()">Load</button>
+            <button onclick="saveStory()">Download</button>
+            <button onclick="insertTemplate()">New</button>
+        </div>
+        <textarea id="editor" placeholder="Paste or load your Ink story here..."></textarea>
+        <input type="file" id="fileInput" style="display:none" accept=".ink,.txt">
+    </div>
+    <div class="panel">
+        <div class="toolbar">Preview</div>
+        <div id="preview" class="preview">Start typing or load an Ink file...</div>
+    </div>
+</div>
+<script>
+const editor = document.getElementById('editor');
+const previewDiv = document.getElementById('preview');
+const fileInput = document.getElementById('fileInput');
+
+function updatePreview() {
+    const ink = editor.value;
+    const lines = ink.split('\n');
+    let html = '';
+    for(const rawline of lines) {
+        let line = rawline.trim();
+        if(!line) continue;
+        if(line.startsWith('===')) html += `<div class='story-title'>${line.replace(/=/g,'').trim()}</div>`;
+        else if(line.startsWith('# SPEAKER:')) html += `<div class='story-speaker'>${line.replace('# SPEAKER:','').trim()}</div>`;
+        else if(line.startsWith('+')||line.startsWith('*')) html += `<div class='story-choice'>${line.replace(/^[+*]\s*\[(.*?)](\s*->.*?)?$/,'$1')}</div>`;
+        else if(line.startsWith('#')) continue;
+        else if(line.startsWith('//')) continue;
+        else if(line.startsWith('->')) continue;
+        else html += `<div class='story-text'>${escapeHtml(line)}</div>`;
+    }
+    previewDiv.innerHTML = html || '<div class="story-text">No preview</div>';
+}
+
+function saveStory() {
+    const blob = new Blob([editor.value], {type: 'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'story.ink';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
+
+function insertTemplate() {
+    editor.value = `# title: New Story\n# author: author\n# theme: dark\n\n-> Start\n\n=== Start ===\nWrite your story here.\n+ [Next] -> END\n\n=== END ===\n-> END`;
+    updatePreview();
+}
+
+fileInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        editor.value = ev.target.result;
+        updatePreview();
+    };
+    reader.readAsText(file);
+});
+
+editor.addEventListener('input', updatePreview);
+window.addEventListener('DOMContentLoaded', updatePreview);
+
+function escapeHtml(text) {
+    return text.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>
