@@ -1,11 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,700|Quattrocento:700');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
 
+:root {
+    --primary-red: #be3c1c;
+    --dark-red: #8d331a;
+    --bg-black: #000000;
+    --text-grey: #c5c9b5;
+    --muted-grey: #8b8576;
+    --white: #ffffff;
+}
+
 body {
     font-family: 'Sina Nova', serif;
     font-weight: medium;
-    background: black;
+    background: var(--bg-black);
     counter-reset: section;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent body scroll, handled by outerContainer */
+    -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2 {
@@ -17,7 +30,7 @@ h1, h2 {
 h1 {
     font-size: 20pt;
     margin-bottom: 10px;
-    color: white;
+    color: var(--white);
     font-family: 'Dobra Black', serif;
     text-transform: uppercase;
     font-weight: medium;
@@ -27,28 +40,12 @@ h2 {
     font-size: 15pt;
     font-family: 'Sina Nova', serif;
     font-weight: lighter;
-    color: #8b8576;
+    color: var(--muted-grey);
 }
 
 .header {
     padding-top: 3em;
     padding-bottom: 3em;
-}
-
-h3.written-in-ink {
-    font-size: 9pt;
-    font-family: sans-serif;
-    text-align: center;
-    font-weight: 700;
-    position: fixed;
-    /*display: block;*/
-    width: 100%;
-    background: black;
-    margin: 0;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    top: 0;
-    display: none; /*I wanted to hide this for aesthetic purposes!*/
 }
 
 /* Seems necessary to make iframes work on itch.io on mobile iOS :-( */
@@ -60,47 +57,63 @@ h3.written-in-ink {
     margin: 0;
     padding: 0;
     -webkit-overflow-scrolling: touch;
-    overflow-y: scroll;
-    overflow-x:hidden;
-    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
     width: 100%;
     top: 0;
     left: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--white) transparent;
 }
 
 .container {
     display: block;
-    max-width: 350px;
-    min-height: 100vh;
-    margin: 0;
-    padding: 70px;
+    width: 100%;
+    max-width: 600px; /* Increased for better desktop/tablet reading */
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 40px 20px; /* More reasonable padding for mobile */
     padding-top: 4em;
+    box-sizing: border-box;
     background-image: url("images/backgroundtrans.png");
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-size: 100%;
+    background-size: cover;
     background-blend-mode: multiply;
-    text-indent: -20px;
+}
 
+@media (min-width: 800px) {
+    .container {
+        padding: 70px;
+        max-width: 450px;
+        text-indent: -20px;
+    }
 }
 
 p {
     font-size: 14pt;
-    color: #c5c9b5;
-    line-height: 1.3em;
+    color: var(--text-grey);
+    line-height: 1.4em;
     font-weight: medium;
+    margin-bottom: 1em;
 }
 
 a {
-    color: #be3c1c;
-    transition: color 0.6s;
+    color: var(--primary-red);
+    transition: color 0.6s, transform 0.1s;
     text-decoration: none;
+    display: inline-block;
 }
 
-
 a:hover {
-    color: white;
+    color: var(--white);
     transition: color 0.1s;
+}
+
+a:active {
+    transform: scale(0.98);
 }
 
 img {
@@ -125,112 +138,74 @@ img {
 p.choice {
     font-size: 14pt;
     line-height: 1.3em;
-    color: #be3c1c;
+    color: var(--primary-red);
     font-weight: medium;
     display: block;
-    margin-top: -1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
 }
 
 p.choice:before {
     font-size: 14pt;
     font-weight: medium;
-    color: white;
+    color: var(--white);
     counter-increment: section;
     content: "" counter(section) ". - ";
 }
 
-/* first choice */
-:not(.choice) + .choice {
-    margin-top: .5em; 
+@media (max-width: 800px) {
+    .container {
+        text-indent: 0;
+    }
+    p.choice {
+        padding-left: 0;
+    }
 }
-
 
 p.choice a {
     font-size: 14pt;
 }
 
-/* Built in class if you want to write:
-     The End # CLASS: end
-*/
-.end {
-    text-align: center;
-    font-weight: bold;
-    color: black;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 /* Start of the Disco Elysium specific classes*/
-body .name {
-    font-weight: medium;
-    font-family: 'Dobra Black', serif;
-    color: white;
-    text-transform: uppercase;
-}
+body .name { font-weight: medium; font-family: 'Dobra Black', serif; color: var(--white); text-transform: uppercase; }
+body .psy { font-weight: medium; font-family: 'Dobra Black', serif; color: #705cbb; text-transform: uppercase; }
+body .fys { font-weight: medium; font-family: 'Dobra Black', serif; color: #c6496B; text-transform: uppercase; }
+body .int { font-weight: medium; font-family: 'Dobra Black', serif; color: #6cc6ce; text-transform: uppercase; }
+body .mot { font-weight: medium; font-family: 'Dobra Black', serif; color: #E4b934; text-transform: uppercase; }
+body .check { color: #7e796a; }
+body .task { color: #86a979; }
 
-body .psy {
-    font-weight: medium;
-    font-family: 'Dobra Black', serif;
-    color: #705cbb;
-    text-transform: uppercase;
-}
-
-body .fys {
-    font-weight: medium;
-    font-family: 'Dobra Black', serif;
-    color: #c6496B;
-    text-transform: uppercase;
-}
-
-body .int {
-    font-weight: medium;
-    font-family: 'Dobra Black', serif;
-    color: #6cc6ce;
-    text-transform: uppercase;
-}
-
-body .mot {
-    font-weight: medium;
-    font-family: 'Dobra Black', serif;
-    color: #E4b934;
-    text-transform: uppercase;
-}
-
-body .check {
-    color: #7e796a;
-}
-
-body .task {
-    color: #86a979;
-}
-
-/* Text you've read already */
 body .greyed {
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 /* Continue button */
 body .continue a {
-    background-color: #be3c1c;
-    width: 110%;
+    background-color: var(--primary-red);
+    width: calc(100% + 40px);
     margin-left: -20px;
-    text-indent: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
     display: block;
     font-family: 'dosis', sans-serif;
-    color: white !important; 
+    color: var(--white) !important;
     font-weight: 100;
     font-size: 18pt;
-    line-height: 1.7em;
+    line-height: 1.2em;
     text-transform: uppercase;
+    text-align: center;
+}
+
+body .continue a:active {
+    background-color: #e04a25;
 }
 
 /* Red check options */
 p.red{
-    width: 110%;
-    min-height: 1.3em;
-    text-indent: 0px;
+    width: calc(100% + 40px);
     margin-left: -20px;
-    margin-top: -1em;
+    padding: 10px 20px;
+    box-sizing: border-box;
     background-color: #d8431c;
     display: block;
 }
@@ -240,20 +215,17 @@ p.red a {
     color: #342b28;
     line-height: 1.3em;
     font-weight: medium;
-
+    width: 100%;
 }
 
-p.red:hover a {
-    color: white;
-}
+p.red:hover a { color: var(--white); }
 
 /* White check options */
 p.white{
-    width: 110%;
-    min-height:1.3em;
-    text-indent: 0px;
+    width: calc(100% + 40px);
     margin-left: -20px;
-    margin-top: -1em;
+    padding: 10px 20px;
+    box-sizing: border-box;
     background-color: #cbc5b7;
     display: block;
 }
@@ -263,52 +235,34 @@ p.white a {
     color: #373735;
     line-height: 1.3em;
     font-weight: medium;
-
+    width: 100%;
 }
 
-p.white:hover {
-    background-color: #858070;
-}
-
-p.white:hover a {
-    color: white;
-}
+p.white:hover { background-color: #858070; }
+p.white:hover a { color: var(--white); }
 
 /* Locked white check options*/
 p.locked{
-    width: 110%;
-    min-height:1.3em;
-    text-indent: 0px;
+    width: calc(100% + 40px);
     margin-left: -20px;
-    margin-top: -1em;
+    padding: 10px 20px;
+    box-sizing: border-box;
     background-color: #d5cfbf;
     display: block;
 }
 
 p.locked a {
     font-size: 14pt;
-    color: #8b8576 !important;
+    color: var(--muted-grey) !important;
     line-height: 1.3em;
     font-weight: medium;
     pointer-events: none;
 }
 
-/* For the choices you've already picked */
-body .read a {
-    color: #8d331a !important;
-}
+body .read a { color: var(--dark-red) !important; }
+.read:hover a { color: var(--white) !important; }
 
-.read:hover a {
-    color: white !important;
-    transition: color 0.1s;
-}
-
-/* For "you" paragraphs */
-
-.you:before {
-    content: "YOU — "
-}
-
+.you:before { content: "YOU — " }
 
 /* Photos */
 .photoContainer {
@@ -322,14 +276,8 @@ body .read a {
     justify-content: center;
 }
 
-.charphoto {
-    width: 125px;
-}
-
-.charphoto img {
-    width: 100%;
-    height: auto;
-}
+.charphoto { width: 125px; }
+.charphoto img { width: 100%; height: auto; border-radius: 4px; }
 
 @media (max-width: 800px) {
     .outerContainer {
@@ -337,35 +285,21 @@ body .read a {
         align-items: center;
     }
     .photoContainer {
-        /* When display: none is set by JS, it stays hidden.
-           When it's visible, it uses these styles. */
         position: relative;
         top: 0;
         margin-top: 20px;
         margin-right: 0;
-        margin-bottom: -100px;
+        margin-bottom: 20px;
         z-index: 10;
+        width: 120px;
     }
 }
 
-
-
-
 /* scrollbar */
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-  
-::-webkit-scrollbar-track {
-    background: white;
-    border-left: 4px solid black;
-    border-right: 4px solid black;
-    background-clip: padding-box;
-}
-  
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-    background: white;
-    height: 50px;
-    border-radius:100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
 }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
