@@ -2,94 +2,502 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Story Editor - Suffering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Story Editor — Suffering</title>
     <style>
-        body { margin:0; padding:0; background:#111; color:#eee; font-family:monospace; height:100vh; display:flex; }
-        .editor-container { display:flex; width:100vw; height:100vh; }
-        .panel { flex:1; display:flex; flex-direction:column; }
-        .toolbar { padding:10px; background:#1a1a1a; border-bottom:1px solid #333; }
-        .toolbar button { margin-right:10px; padding:6px 20px; font-family:inherit; background:#222; color:#eee; border:1px solid #444; border-radius:4px; cursor:pointer; }
-        .toolbar button:hover { background:#333; }
-        textarea { flex:1; resize:none; border:none; outline:none; background:#181818; color:#eee; font-size:14px; padding:16px; }
-        .preview { flex:1; overflow-y:auto; background:#161616; padding:16px; }
-        .story-title { font-size:1.2em; color:#4CAF50; margin:8px 0; }
-        .story-speaker { color:#ffb74d; font-weight:bold;margin-top:10px; }
-        .story-choice { color:#82b1ff; margin-left:14px;margin-bottom:4px;font-size:0.96em; }
-        .story-text { margin:2px 0 12px 0; color:#fafafa; }
+        :root {
+            --red: #be3c1c;
+            --red-bright: #e04a25;
+            --bg: #0c0c0c;
+            --panel: #141312;
+            --panel-2: #1b1a18;
+            --border: #2a2825;
+            --text: #d8d4c6;
+            --muted: #8b8576;
+            --int: #6cc6ce;
+            --psy: #705cbb;
+            --fys: #c6496b;
+            --mot: #e4b934;
+            --ok: #86a979;
+        }
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 16px;
+            background: var(--panel);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .brand {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .brand .accent { color: var(--red); }
+        .brand .sub { color: var(--muted); font-weight: 400; letter-spacing: 0.04em; font-size: 11px; }
+        .spacer { flex: 1; }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: var(--muted);
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+        .status.ok .dot { background: var(--ok); }
+        .status.err .dot { background: var(--red-bright); }
+        .status.ok { color: var(--ok); }
+        .status.err { color: var(--red-bright); }
+
+        .btn {
+            font: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 7px 14px;
+            background: var(--panel-2);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .btn:hover { background: #262421; border-color: #3a3733; }
+        .btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+        .btn.primary:hover { background: var(--red-bright); border-color: var(--red-bright); }
+
+        /* ---------- Workspace ---------- */
+        .workspace { flex: 1; display: flex; min-height: 0; }
+        .panel { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+        .panel + .panel { border-left: 1px solid var(--border); }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: var(--panel);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+        .panel-head .label {
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-right: 6px;
+        }
+
+        .chip {
+            font: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 9px;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.12s, border-color 0.12s;
+        }
+        .chip:hover { background: var(--panel-2); border-color: #3a3733; }
+        select.chip { appearance: none; padding-right: 22px; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: right 9px center, right 5px center; background-size: 4px 4px, 4px 4px; background-repeat: no-repeat; }
+
+        /* ---------- Editor ---------- */
+        .editor-wrap { flex: 1; display: flex; min-height: 0; background: #121110; position: relative; }
+        .gutter {
+            padding: 14px 8px 14px 12px;
+            text-align: right;
+            color: #4d4a44;
+            background: #100f0e;
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            user-select: none;
+            overflow: hidden;
+            white-space: pre;
+            border-right: 1px solid var(--border);
+        }
+        #editor {
+            flex: 1;
+            resize: none;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            padding: 14px 16px;
+            tab-size: 4;
+            white-space: pre;
+            overflow: auto;
+        }
+
+        /* ---------- Preview ---------- */
+        .preview-wrap { flex: 1; position: relative; min-height: 0; background: #000; }
+        #preview { width: 100%; height: 100%; border: none; background: #000; display: block; }
+        .errors {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            max-height: 55%;
+            overflow: auto;
+            background: rgba(20, 10, 8, 0.97);
+            border-top: 2px solid var(--red);
+            padding: 12px 16px;
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #f0c9bd;
+            display: none;
+        }
+        .errors.show { display: block; }
+        .errors h4 { margin: 0 0 8px; color: var(--red-bright); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+        .errors .row { padding: 2px 0; border-bottom: 1px solid rgba(190,60,28,0.2); }
+
+        /* ---------- Mobile tabs ---------- */
+        .tabs { display: none; }
+        @media (max-width: 820px) {
+            .tabs {
+                display: flex;
+                background: var(--panel);
+                border-bottom: 1px solid var(--border);
+                flex-shrink: 0;
+            }
+            .tab {
+                flex: 1;
+                font: inherit;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                padding: 12px;
+                background: transparent;
+                color: var(--muted);
+                border: none;
+                border-bottom: 2px solid transparent;
+                cursor: pointer;
+            }
+            .tab.active { color: var(--text); border-bottom-color: var(--red); }
+            .workspace { position: relative; }
+            .panel + .panel { border-left: none; }
+            .panel { position: absolute; inset: 0; }
+            .panel[hidden] { display: none; }
+            .brand .sub { display: none; }
+        }
     </style>
 </head>
 <body>
-<div class="editor-container">
-    <div class="panel">
-        <div class="toolbar">
-            <button onclick="fileInput.click()">Load</button>
-            <button onclick="saveStory()">Download</button>
-            <button onclick="insertTemplate()">New</button>
-        </div>
-        <textarea id="editor" placeholder="Paste or load your Ink story here..."></textarea>
+    <div class="topbar">
+        <div class="brand"><span><span class="accent">Story</span> Editor</span><span class="sub">Suffering · Ink</span></div>
+        <div class="spacer"></div>
+        <div id="status" class="status"><span class="dot"></span><span id="statusText">Idle</span></div>
+        <button class="btn" onclick="document.getElementById('fileInput').click()">Load</button>
+        <button class="btn" onclick="newStory()">New</button>
+        <button class="btn primary" onclick="downloadStory()">Download</button>
         <input type="file" id="fileInput" style="display:none" accept=".ink,.txt">
     </div>
-    <div class="panel">
-        <div class="toolbar">Preview</div>
-        <div id="preview" class="preview">Start typing or load an Ink file...</div>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="write" onclick="showTab('write')">Write</button>
+        <button class="tab" data-tab="preview" onclick="showTab('preview')">Preview</button>
     </div>
-</div>
-<script>
-const editor = document.getElementById('editor');
-const previewDiv = document.getElementById('preview');
-const fileInput = document.getElementById('fileInput');
 
-function updatePreview() {
-    const ink = editor.value;
-    const lines = ink.split('\n');
-    let html = '';
-    for(const rawline of lines) {
-        let line = rawline.trim();
-        if(!line) continue;
-        if(line.startsWith('===')) html += `<div class='story-title'>${line.replace(/=/g,'').trim()}</div>`;
-        else if(line.startsWith('# SPEAKER:')) html += `<div class='story-speaker'>${line.replace('# SPEAKER:','').trim()}</div>`;
-        else if(line.startsWith('+')||line.startsWith('*')) html += `<div class='story-choice'>${line.replace(/^[+*]\s*\[(.*?)](\s*->.*?)?$/,'$1')}</div>`;
-        else if(line.startsWith('#')) continue;
-        else if(line.startsWith('//')) continue;
-        else if(line.startsWith('->')) continue;
-        else html += `<div class='story-text'>${escapeHtml(line)}</div>`;
-    }
-    previewDiv.innerHTML = html || '<div class="story-text">No preview</div>';
-}
+    <div class="workspace">
+        <!-- Editor -->
+        <div class="panel" id="panel-write">
+            <div class="panel-head">
+                <span class="label">Insert</span>
+                <button class="chip" onclick="insertKnot()">Knot</button>
+                <select class="chip" id="speakerSelect" onchange="insertSpeaker(this.value); this.selectedIndex=0;">
+                    <option value="">Speaker…</option>
+                </select>
+                <button class="chip" onclick="insertSnippet('* [Choice text] -> Knot\n')">Choice</button>
+                <button class="chip" onclick="insertSnippet('+ [▸] -> Knot\n')">Continue ▸</button>
+                <button class="chip" onclick="insertSnippet('# CHECK: medium-success\n')">Check</button>
+                <button class="chip" onclick="insertSnippet('# PORTRAIT: kim\n')">Portrait</button>
+                <button class="chip" onclick="insertSnippet('-> Knot')">Divert</button>
+            </div>
+            <div class="editor-wrap">
+                <div class="gutter" id="gutter">1</div>
+                <textarea id="editor" spellcheck="false" placeholder="Paste or load your Ink story here…"></textarea>
+            </div>
+        </div>
 
-function saveStory() {
-    const blob = new Blob([editor.value], {type: 'text/plain'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'story.ink';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-}
+        <!-- Preview -->
+        <div class="panel" id="panel-preview" hidden>
+            <div class="panel-head">
+                <span class="label">Live Preview</span>
+                <button class="chip" onclick="renderPreview(true)">Restart ▸</button>
+                <span class="spacer"></span>
+            </div>
+            <div class="preview-wrap">
+                <iframe id="preview" title="Story preview"></iframe>
+                <div class="errors" id="errors"></div>
+            </div>
+        </div>
+    </div>
 
-function insertTemplate() {
-    editor.value = `# title: New Story\n# author: author\n# theme: dark\n\n-> Start\n\n=== Start ===\nWrite your story here.\n+ [Next] -> END\n\n=== END ===\n-> END`;
-    updatePreview();
-}
+    <script src="ink-full.js"></script>
+    <script>
+        const editor = document.getElementById('editor');
+        const gutter = document.getElementById('gutter');
+        const previewFrame = document.getElementById('preview');
+        const errorsEl = document.getElementById('errors');
+        const statusEl = document.getElementById('status');
+        const statusText = document.getElementById('statusText');
+        const fileInput = document.getElementById('fileInput');
 
-fileInput.addEventListener('change', e => {
-    const file = e.target.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-        editor.value = ev.target.result;
-        updatePreview();
-    };
-    reader.readAsText(file);
-});
+        // Speakers: characters + the 24 Disco Elysium skills (3-letter codes match the game engine)
+        const SPEAKERS = [
+            { group: 'Characters', items: ['YOU', 'KIM', 'HARRY', 'WOMAN', 'ANCIENT REPTILIAN BRAIN', 'LIMBIC SYSTEM'] },
+            { group: 'Intellect', items: ['LOG · Logic', 'ENC · Encyclopedia', 'RHE · Rhetoric', 'DRA · Drama', 'CON · Conceptualization', 'VIS · Visual Calculus'] },
+            { group: 'Psyche', items: ['VOL · Volition', 'INL · Inland Empire', 'EMP · Empathy', 'AUT · Authority', 'SUG · Suggestion', 'ESP · Esprit de Corps'] },
+            { group: 'Physique', items: ['END · Endurance', 'PAI · Pain Threshold', 'PHY · Physical Instrument', 'ELE · Electrochemistry', 'SHI · Shivers', 'HAL · Half Light'] },
+            { group: 'Motorics', items: ['HAN · Hand/Eye Coordination', 'PER · Perception', 'REA · Reaction Speed', 'SAV · Savoir Faire', 'INT · Interfacing', 'COM · Composure'] },
+        ];
+        (function fillSpeakers() {
+            for (const g of SPEAKERS) {
+                const og = document.createElement('optgroup');
+                og.label = g.group;
+                for (const it of g.items) {
+                    const code = it.split(' · ')[0];
+                    const opt = document.createElement('option');
+                    opt.value = code;
+                    opt.textContent = it;
+                    og.appendChild(opt);
+                }
+                document.getElementById('speakerSelect').appendChild(og);
+            }
+        })();
 
-editor.addEventListener('input', updatePreview);
-window.addEventListener('DOMContentLoaded', updatePreview);
+        const DEFAULT_TEMPLATE = `# title: New Story
+# author: author
+# theme: dark
 
-function escapeHtml(text) {
-    return text.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-</script>
+-> Start
+
+=== Start ===
+
+# SPEAKER: ANCIENT REPTILIAN BRAIN
+Your consciousness stirs. Write the opening beat here.
+
+# SPEAKER: vol
+Choose your first thread carefully.
+
++ [▸] -> Next
+
+=== Next ===
+
+# SPEAKER: YOU
+What do you do?
+
+* [Look around] -> END
+* [Stay still] -> END
+`;
+
+        /* ---------- Gutter (line numbers) ---------- */
+        function updateGutter() {
+            const lines = editor.value.split('\n').length;
+            let s = '';
+            for (let i = 1; i <= lines; i++) s += i + '\n';
+            gutter.textContent = s;
+            gutter.scrollTop = editor.scrollTop;
+        }
+        editor.addEventListener('scroll', () => { gutter.scrollTop = editor.scrollTop; });
+
+        /* ---------- Insert helpers ---------- */
+        function insertSnippet(text) {
+            const start = editor.selectionStart;
+            const end = editor.selectionEnd;
+            const val = editor.value;
+            // Ensure snippet starts on a fresh line when appropriate
+            let prefix = '';
+            if (start > 0 && val[start - 1] !== '\n' && text.startsWith('#')) prefix = '\n';
+            editor.value = val.slice(0, start) + prefix + text + val.slice(end);
+            const pos = start + prefix.length + text.length;
+            editor.focus();
+            editor.selectionStart = editor.selectionEnd = pos;
+            onEdit();
+        }
+        function insertKnot() {
+            const val = editor.value;
+            const start = editor.selectionStart;
+            const nl = (start > 0 && val[start - 1] !== '\n') ? '\n\n' : '\n';
+            insertSnippet(nl + '=== NewKnot ===\n');
+        }
+        function insertSpeaker(code) {
+            if (!code) return;
+            insertSnippet('# SPEAKER: ' + code + '\n');
+        }
+
+        // Tab key inserts spaces instead of leaving the textarea
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const s = editor.selectionStart, en = editor.selectionEnd;
+                editor.value = editor.value.slice(0, s) + '    ' + editor.value.slice(en);
+                editor.selectionStart = editor.selectionEnd = s + 4;
+                onEdit();
+            }
+        });
+
+        /* ---------- Compilation + preview ---------- */
+        let lastGoodJson = null;
+        let debounceTimer = null;
+
+        function setStatus(kind, text) {
+            statusEl.className = 'status' + (kind ? ' ' + kind : '');
+            statusText.textContent = text;
+        }
+
+        function compile(src) {
+            const messages = [];
+            const options = {
+                sourceFilename: null,
+                pluginNames: [],
+                countAllVisits: false,
+                errorHandler: (message, type) => { messages.push({ message, type }); },
+                fileHandler: null,
+            };
+            try {
+                const story = new inkjs.Compiler(src, options).Compile();
+                const hasError = messages.some(m => String(m.type).toLowerCase().includes('error'));
+                if (!story || hasError) return { ok: false, messages };
+                return { ok: true, json: story.ToJson(), messages };
+            } catch (e) {
+                messages.push({ message: (e && e.message) ? e.message : String(e), type: 'Error' });
+                return { ok: false, messages };
+            }
+        }
+
+        function showErrors(messages) {
+            if (!messages || !messages.length) { errorsEl.classList.remove('show'); errorsEl.innerHTML = ''; return; }
+            let html = '<h4>Compile errors</h4>';
+            for (const m of messages) {
+                const t = String(m.type || 'Error');
+                html += `<div class="row"><strong>${escapeHtml(t)}:</strong> ${escapeHtml(m.message || '')}</div>`;
+            }
+            errorsEl.innerHTML = html;
+            errorsEl.classList.add('show');
+        }
+
+        function buildPreviewDoc(json) {
+            // Escape "<" so any closing script tag or inline tags inside story text can't break the injected script.
+            const safe = json.replace(/</g, '\\u003c');
+            return `<!DOCTYPE html><html class="dark"><head><meta charset="utf-8">`
+                + `<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">`
+                + `<link rel="stylesheet" href="style.css"></head><body class="dark">`
+                + `<div class="outerContainer"><div class="photoContainer"><div class="charphoto"></div></div>`
+                + `<div class="container"><div id="story"><div class="header"><h1>Suffering</h1><h2 class="byline"></h2></div></div></div></div>`
+                + `<script src="ink.js"><\/script>`
+                + `<script>var storyContent=${safe};<\/script>`
+                + `<script src="main.js"><\/script></body></html>`;
+        }
+
+        function renderPreview(force) {
+            const result = compile(editor.value);
+            if (result.ok) {
+                showErrors(null);
+                setStatus('ok', 'Compiled');
+                if (force || result.json !== lastGoodJson) {
+                    lastGoodJson = result.json;
+                    previewFrame.srcdoc = buildPreviewDoc(result.json);
+                }
+            } else {
+                showErrors(result.messages);
+                setStatus('err', result.messages.length + ' error' + (result.messages.length === 1 ? '' : 's'));
+            }
+        }
+
+        function onEdit() {
+            updateGutter();
+            setStatus('', 'Editing…');
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => renderPreview(false), 450);
+        }
+        editor.addEventListener('input', onEdit);
+
+        /* ---------- File actions ---------- */
+        function getTitle() {
+            const m = editor.value.match(/^#\s*title:\s*(.+)$/im);
+            return m ? m[1].trim().replace(/[^\w\-]+/g, '_').toLowerCase() : 'story';
+        }
+        function downloadStory() {
+            const blob = new Blob([editor.value], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = getTitle() + '.ink';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(a.href);
+        }
+        function newStory() {
+            if (editor.value.trim() && !confirm('Replace the current story with a blank template?')) return;
+            editor.value = DEFAULT_TEMPLATE;
+            onEdit();
+            editor.focus();
+        }
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => { editor.value = ev.target.result; onEdit(); };
+            reader.readAsText(file);
+            fileInput.value = '';
+        });
+
+        /* ---------- Mobile tabs ---------- */
+        function showTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+            document.getElementById('panel-write').hidden = tab !== 'write';
+            document.getElementById('panel-preview').hidden = tab !== 'preview';
+            if (tab === 'preview') renderPreview(false);
+        }
+
+        function escapeHtml(t) {
+            return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        /* ---------- Boot: load the project's story if available ---------- */
+        (async function boot() {
+            let loaded = false;
+            try {
+                const res = await fetch('main.ink', { cache: 'no-store' });
+                if (res.ok) {
+                    const txt = await res.text();
+                    if (txt && txt.trim()) { editor.value = txt; loaded = true; }
+                }
+            } catch (_) { /* running from file:// or offline — fall back to template */ }
+            if (!loaded) editor.value = DEFAULT_TEMPLATE;
+            updateGutter();
+            renderPreview(true);
+        })();
+    </script>
 </body>
 </html>
